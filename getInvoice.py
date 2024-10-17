@@ -3,6 +3,9 @@ import os
 import argparse
 import json
 from load_cookies import load_cookies_from_json
+import certifi
+
+# Print the path to the cacert.pem file
 
 # Create argument parser
 parser = argparse.ArgumentParser(description="Get type, month and year from command line.")
@@ -32,7 +35,7 @@ TOTAL = 0
 
 
 search = f"tdlap=ge=01/{month}/{year}T00:00:00;tdlap=le=31/{month}/{year}T23:59:59;ttxly==5"
-os.environ['REQUESTS_CA_BUNDLE'] = 'C:\working\\nhi\\venv\Lib\site-packages\certifi\cacert.pem' 
+os.environ['REQUESTS_CA_BUNDLE'] = certifi.where() 
 # Parameters from the image
 params = {
     "sort": "tdlap:desc,khmshdon:asc,shdon:desc",
