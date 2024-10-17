@@ -2,7 +2,7 @@ import requests
 import os
 import argparse
 import json
-from invoiceGet.load_cookies import load_cookies_from_json
+from load_cookies import load_cookies_from_json
 
 # Create argument parser
 parser = argparse.ArgumentParser(description="Get type, month and year from command line.")
@@ -23,8 +23,6 @@ cookies = load_cookies_from_json('cookies.json')
 # Print or use the values
 print(f"Month: {month}, Year: {year}")
 
-# Print or use the values
-print(f"Month: {month}, Year: {year}")
 #get argument month 
 
 
@@ -90,8 +88,7 @@ def getInvoice(url, headers, params, cookies, state ,size = 50)-> list:
     
     return invoices_list
 # Print the response text (raw) and JSON (if applicable)
-
-if '__name__' == '__main__':
+if __name__ == "__main__":
     
 
     data = getInvoice(url, headers, params, cookies, state)
@@ -108,7 +105,7 @@ if '__name__' == '__main__':
     print("Data saved with UTF-8 encoding.")
 
 
-    from invoiceGet.extractThueExcel import save_to_excel
+    from extractThueExcel import save_to_excel
     excel_output_path = f"data_excel/data-{month}-{year}"
 
     save_to_excel(f'{json_output_path}.json', f'{excel_output_path}.xlsx')
